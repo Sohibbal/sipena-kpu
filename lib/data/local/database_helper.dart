@@ -50,7 +50,10 @@ class DatabaseHelper {
 
   Future<List<PemilihModel>> getPemilihList() async {
     Database db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('pemilih');
+    final List<Map<String, dynamic>> maps = await db.query(
+      'pemilih',
+      orderBy: "tanggal_pendataan DESC"
+      );
     return List.generate(maps.length, (i) {
       return PemilihModel.fromMap(maps[i]);
     });

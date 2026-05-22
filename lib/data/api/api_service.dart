@@ -4,9 +4,7 @@ import '../models/pemilih_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  // Ganti dengan IP address lokal komputer Anda yang menjalankan Next.js backend, misalnya:
-  // static const String baseUrl = 'http://192.168.1.100:3000/api';
-  static const String baseUrl = 'http://192.168.0.228:3000/api'; // IP Wi-Fi Komputer Anda
+  static const String baseUrl = 'http://192.168.0.228:3000/api'; // IP Wi-Fi
 
   Future<Map<String, dynamic>> login(String username, String password) async {
     try {

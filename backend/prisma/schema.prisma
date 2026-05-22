@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Pendata {
+  id            Int       @id @default(autoincrement())
+  username      String    @unique
+  password      String
+  nama_lengkap  String
+  wilayah_tugas String
+  created_at    DateTime  @default(now())
+  pemilih       Pemilih[]
+}
+
+model Pemilih {
+  id                Int      @id @default(autoincrement())
+  nik               String   @unique
+  nama_lengkap      String
+  no_hp             String
+  jenis_kelamin     String
+  tanggal_pendataan DateTime @default(now())
+  alamat            String
+  latitude          Float?
+  longitude         Float?
+  foto_url          String?
+  id_pendata        Int
+  pendata           Pendata  @relation(fields: [id_pendata], references: [id])
+  created_at        DateTime @default(now())
+}
